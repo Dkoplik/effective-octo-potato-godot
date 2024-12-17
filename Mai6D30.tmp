@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://5stxddd0ehfr"]
+
+[ext_resource type="PackedScene" uid="uid://bfvpqpm03xh8k" path="res://Map/Map.tscn" id="1_0a1kl"]
+[ext_resource type="PackedScene" uid="uid://m2a1hi3252yf" path="res://UI.tscn" id="2_4s4go"]
+
+[node name="Main" type="Node2D"]
+
+[node name="Map" parent="." instance=ExtResource("1_0a1kl")]
+
+[node name="Control" parent="." instance=ExtResource("2_4s4go")]
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_right = 1920.0
+offset_bottom = 1080.0
+grow_horizontal = 1
+grow_vertical = 1

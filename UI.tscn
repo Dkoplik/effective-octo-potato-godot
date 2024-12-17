@@ -1,0 +1,151 @@
+[gd_scene load_steps=8 format=3 uid="uid://m2a1hi3252yf"]
+
+[ext_resource type="Texture2D" uid="uid://cw3b6lu8tlgaq" path="res://Assets/Sprites/Buttons/Turn_left.png" id="1_aidnh"]
+[ext_resource type="FontFile" uid="uid://urieviud6nqf" path="res://Assets/Fonts/Monocraft.otf" id="1_du738"]
+[ext_resource type="Texture2D" uid="uid://cqca72ev5gqnp" path="res://Assets/Sprites/UI/Heart.png" id="1_nxmyc"]
+[ext_resource type="Texture2D" uid="uid://b6nwalxybgk06" path="res://Assets/Sprites/Buttons/Turn_right.png" id="2_p7qxy"]
+[ext_resource type="Texture2D" uid="uid://drnrr8roeiw75" path="res://Assets/Sprites/Buttons/Move.png" id="3_yk1v8"]
+[ext_resource type="Texture2D" uid="uid://s25m2er036qg" path="res://Assets/Sprites/Buttons/Shot.png" id="4_i1ouo"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_at8w7"]
+
+[node name="Control" type="Control"]
+custom_minimum_size = Vector2(400, 220)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Lives1" type="PanelContainer" parent="CanvasLayer"]
+offset_left = 11.0
+offset_top = 5.0
+offset_right = 74.0
+offset_bottom = 47.0
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Lives1"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Lives1/MarginContainer"]
+layout_mode = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/Lives1/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Lives1/MarginContainer/VBoxContainer/CenterContainer"]
+layout_mode = 2
+
+[node name="Count_HP1" type="Label" parent="CanvasLayer/Lives1/MarginContainer/VBoxContainer/CenterContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_du738")
+theme_override_font_sizes/font_size = 30
+text = "3"
+horizontal_alignment = 1
+
+[node name="Heart" type="TextureRect" parent="CanvasLayer/Lives1/MarginContainer/VBoxContainer/CenterContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("1_nxmyc")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="CanvasLayer/Lives1/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_du738")
+text = "steps: 5"
+
+[node name="Lives2" type="PanelContainer" parent="CanvasLayer"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -120.0
+offset_top = 7.0
+offset_right = -14.0
+offset_bottom = 65.0
+grow_horizontal = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Lives2"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Lives2/MarginContainer"]
+layout_mode = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/Lives2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Lives2/MarginContainer/VBoxContainer/CenterContainer"]
+layout_mode = 2
+
+[node name="Count_HP1" type="Label" parent="CanvasLayer/Lives2/MarginContainer/VBoxContainer/CenterContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_du738")
+theme_override_font_sizes/font_size = 30
+text = "3"
+horizontal_alignment = 1
+
+[node name="Heart" type="TextureRect" parent="CanvasLayer/Lives2/MarginContainer/VBoxContainer/CenterContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("1_nxmyc")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="CanvasLayer/Lives2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_du738")
+text = "steps: 5"
+
+[node name="PanelContainer_Buttons" type="PanelContainer" parent="CanvasLayer"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -148.0
+offset_top = -45.0
+offset_right = -16.0
+offset_bottom = -13.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_at8w7")
+
+[node name="GridContainer" type="GridContainer" parent="CanvasLayer/PanelContainer_Buttons"]
+layout_mode = 2
+columns = 4
+
+[node name="Turn_left" type="Button" parent="CanvasLayer/PanelContainer_Buttons/GridContainer"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+icon = ExtResource("1_aidnh")
+flat = true
+expand_icon = true
+
+[node name="Turn_right" type="Button" parent="CanvasLayer/PanelContainer_Buttons/GridContainer"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+icon = ExtResource("2_p7qxy")
+flat = true
+expand_icon = true
+
+[node name="Move" type="Button" parent="CanvasLayer/PanelContainer_Buttons/GridContainer"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+icon = ExtResource("3_yk1v8")
+flat = true
+expand_icon = true
+
+[node name="Shot" type="Button" parent="CanvasLayer/PanelContainer_Buttons/GridContainer"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+icon = ExtResource("4_i1ouo")
+flat = true
+expand_icon = true

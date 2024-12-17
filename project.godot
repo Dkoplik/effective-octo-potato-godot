@@ -11,6 +11,7 @@ config_version=5
 [application]
 
 config/name="WebGame"
+run/main_scene="res://Main.tscn"
 config/features=PackedStringArray("4.3")
 config/icon="res://icon.svg"
 
@@ -24,8 +25,11 @@ gdscript/warnings/unsafe_call_argument=1
 
 [display]
 
-window/size/viewport_width=1980
-window/size/viewport_height=720
+window/size/viewport_width=480
+window/size/viewport_height=270
+window/size/mode=2
+window/stretch/mode="viewport"
+window/stretch/aspect="expand"
 
 [editor]
 

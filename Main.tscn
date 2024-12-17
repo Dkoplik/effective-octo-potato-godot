@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://5stxddd0ehfr"]
+
+[ext_resource type="PackedScene" uid="uid://bfvpqpm03xh8k" path="res://Map/Map.tscn" id="1_0a1kl"]
+[ext_resource type="PackedScene" uid="uid://m2a1hi3252yf" path="res://UI.tscn" id="2_4s4go"]
+
+[node name="Main" type="Node2D"]
+
+[node name="Map" parent="." instance=ExtResource("1_0a1kl")]
+position = Vector2(-6, -3)
+
+[node name="Control" parent="." instance=ExtResource("2_4s4go")]
+offset_right = 400.0
+offset_bottom = 220.0
