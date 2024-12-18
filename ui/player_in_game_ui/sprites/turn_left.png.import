@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b6nwalxybgk06"
-path="res://.godot/imported/Turn_right.png-63c4a7d11d9d596d9f14e1d602bcffa7.ctex"
+uid="uid://cw3b6lu8tlgaq"
+path="res://.godot/imported/turn_left.png-f66b70d098c3e3df41e6a1ca853a6c43.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Buttons/Turn_right.png"
-dest_files=["res://.godot/imported/Turn_right.png-63c4a7d11d9d596d9f14e1d602bcffa7.ctex"]
+source_file="res://ui/player_in_game_ui/sprites/turn_left.png"
+dest_files=["res://.godot/imported/turn_left.png-f66b70d098c3e3df41e6a1ca853a6c43.ctex"]
 
 [params]
 

@@ -1,11 +1,11 @@
 [gd_scene load_steps=8 format=3 uid="uid://m2a1hi3252yf"]
 
-[ext_resource type="Texture2D" uid="uid://cw3b6lu8tlgaq" path="res://Assets/Sprites/Buttons/Turn_left.png" id="1_aidnh"]
-[ext_resource type="FontFile" uid="uid://urieviud6nqf" path="res://Assets/Fonts/Monocraft.otf" id="1_du738"]
-[ext_resource type="Texture2D" uid="uid://cqca72ev5gqnp" path="res://Assets/Sprites/UI/Heart.png" id="1_nxmyc"]
-[ext_resource type="Texture2D" uid="uid://b6nwalxybgk06" path="res://Assets/Sprites/Buttons/Turn_right.png" id="2_p7qxy"]
-[ext_resource type="Texture2D" uid="uid://drnrr8roeiw75" path="res://Assets/Sprites/Buttons/Move.png" id="3_yk1v8"]
-[ext_resource type="Texture2D" uid="uid://s25m2er036qg" path="res://Assets/Sprites/Buttons/Shot.png" id="4_i1ouo"]
+[ext_resource type="FontFile" uid="uid://urieviud6nqf" path="res://common/fonts/Monocraft.otf" id="1_jilrc"]
+[ext_resource type="Texture2D" uid="uid://cqca72ev5gqnp" path="res://ui/player_in_game_ui/sprites/heart.png" id="2_rtxld"]
+[ext_resource type="Texture2D" uid="uid://cw3b6lu8tlgaq" path="res://ui/player_in_game_ui/sprites/turn_left.png" id="3_cmxas"]
+[ext_resource type="Texture2D" uid="uid://b6nwalxybgk06" path="res://ui/player_in_game_ui/sprites/turn_right.png" id="4_gj4ng"]
+[ext_resource type="Texture2D" uid="uid://drnrr8roeiw75" path="res://ui/player_in_game_ui/sprites/move.png" id="5_i77fm"]
+[ext_resource type="Texture2D" uid="uid://s25m2er036qg" path="res://ui/player_in_game_ui/sprites/shot.png" id="6_ly7sx"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_at8w7"]
 
@@ -44,20 +44,20 @@ layout_mode = 2
 
 [node name="Count_HP1" type="Label" parent="CanvasLayer/Lives1/MarginContainer/VBoxContainer/CenterContainer/HBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("1_du738")
+theme_override_fonts/font = ExtResource("1_jilrc")
 theme_override_font_sizes/font_size = 30
 text = "3"
 horizontal_alignment = 1
 
 [node name="Heart" type="TextureRect" parent="CanvasLayer/Lives1/MarginContainer/VBoxContainer/CenterContainer/HBoxContainer"]
 layout_mode = 2
-texture = ExtResource("1_nxmyc")
+texture = ExtResource("2_rtxld")
 expand_mode = 2
 stretch_mode = 5
 
 [node name="Label" type="Label" parent="CanvasLayer/Lives1/MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("1_du738")
+theme_override_fonts/font = ExtResource("1_jilrc")
 text = "steps: 5"
 
 [node name="Lives2" type="PanelContainer" parent="CanvasLayer"]
@@ -88,20 +88,20 @@ layout_mode = 2
 
 [node name="Count_HP1" type="Label" parent="CanvasLayer/Lives2/MarginContainer/VBoxContainer/CenterContainer/HBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("1_du738")
+theme_override_fonts/font = ExtResource("1_jilrc")
 theme_override_font_sizes/font_size = 30
 text = "3"
 horizontal_alignment = 1
 
 [node name="Heart" type="TextureRect" parent="CanvasLayer/Lives2/MarginContainer/VBoxContainer/CenterContainer/HBoxContainer"]
 layout_mode = 2
-texture = ExtResource("1_nxmyc")
+texture = ExtResource("2_rtxld")
 expand_mode = 2
 stretch_mode = 5
 
 [node name="Label" type="Label" parent="CanvasLayer/Lives2/MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("1_du738")
+theme_override_fonts/font = ExtResource("1_jilrc")
 text = "steps: 5"
 
 [node name="PanelContainer_Buttons" type="PanelContainer" parent="CanvasLayer"]
@@ -125,27 +125,27 @@ columns = 4
 [node name="Turn_left" type="Button" parent="CanvasLayer/PanelContainer_Buttons/GridContainer"]
 custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
-icon = ExtResource("1_aidnh")
+icon = ExtResource("3_cmxas")
 flat = true
 expand_icon = true
 
 [node name="Turn_right" type="Button" parent="CanvasLayer/PanelContainer_Buttons/GridContainer"]
 custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
-icon = ExtResource("2_p7qxy")
+icon = ExtResource("4_gj4ng")
 flat = true
 expand_icon = true
 
 [node name="Move" type="Button" parent="CanvasLayer/PanelContainer_Buttons/GridContainer"]
 custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
-icon = ExtResource("3_yk1v8")
+icon = ExtResource("5_i77fm")
 flat = true
 expand_icon = true
 
 [node name="Shot" type="Button" parent="CanvasLayer/PanelContainer_Buttons/GridContainer"]
 custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
-icon = ExtResource("4_i1ouo")
+icon = ExtResource("6_ly7sx")
 flat = true
 expand_icon = true

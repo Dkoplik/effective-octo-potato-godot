@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cqca72ev5gqnp"
-path="res://.godot/imported/Heart.png-f9bbc38428c117b5a1733171680ae999.ctex"
+uid="uid://drnrr8roeiw75"
+path="res://.godot/imported/move.png-c3defc4c1e64ed74b1de103704bd288f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/UI/Heart.png"
-dest_files=["res://.godot/imported/Heart.png-f9bbc38428c117b5a1733171680ae999.ctex"]
+source_file="res://ui/player_in_game_ui/sprites/move.png"
+dest_files=["res://.godot/imported/move.png-c3defc4c1e64ed74b1de103704bd288f.ctex"]
 
 [params]
 

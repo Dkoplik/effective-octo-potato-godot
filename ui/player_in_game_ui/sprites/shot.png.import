@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://s25m2er036qg"
-path="res://.godot/imported/Shot.png-ba48abcf7d8ce084c2115b181f7530ff.ctex"
+path="res://.godot/imported/shot.png-a23227f9fb902384ead1c88e563c750c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Buttons/Shot.png"
-dest_files=["res://.godot/imported/Shot.png-ba48abcf7d8ce084c2115b181f7530ff.ctex"]
+source_file="res://ui/player_in_game_ui/sprites/shot.png"
+dest_files=["res://.godot/imported/shot.png-a23227f9fb902384ead1c88e563c750c.ctex"]
 
 [params]
 
