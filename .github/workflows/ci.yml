@@ -23,7 +23,7 @@ jobs:
       uses: Scony/godot-gdscript-toolkit@master
 
     - name: Run GDLint
-      run: find . -name '*.gd' -and ! -path './addons/*' -exec gdlint '{}' ';'
+      run: find . -name '*.gd' -and ! -path './addons/*' | xargs gdlint
   
   format:
     name: 'Check Format GDScript'
@@ -36,4 +36,4 @@ jobs:
       uses: Scony/godot-gdscript-toolkit@master
 
     - name: Check formatting
-      run: find . -name '*.gd' -and ! -path './addons/*' -exec gdformat --check '{}' ';'
+      run: find . -name '*.gd' -and ! -path './addons/*' | xargs gdformat --check
