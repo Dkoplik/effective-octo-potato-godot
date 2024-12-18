@@ -4,14 +4,12 @@ on:
   pull_request:
     paths:
       - '**.gd'
-    paths-ignore:
-      - 'addons/**'
+      - '!addons/**'
   push:
     branches: [ main ]
     paths:
       - '**.gd'
-    paths-ignore:
-      - 'addons/**'
+      - '!addons/**'
 
 jobs:
   lint:
