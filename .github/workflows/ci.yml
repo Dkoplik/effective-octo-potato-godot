@@ -1,0 +1,41 @@
+name: CI
+
+on:
+  pull_request:
+    paths:
+      - '**.gd'
+    paths-ignore:
+      - 'addons/**'
+  push:
+    branches: [ main ]
+    paths:
+      - '**.gd'
+    paths-ignore:
+      - 'addons/**'
+
+jobs:
+  lint:
+    name: 'Lint GDScript'
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    - name: Setup gdtoolkit
+      uses: Scony/godot-gdscript-toolkit@master
+
+    - name: Run GDLint
+      run: find . -name '*.gd' -and ! -path './addons/*' -exec gdlint '{}' ';'
+  
+  format:
+    name: 'Check Format GDScript'
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    - name: Setup gdtoolkit
+      uses: Scony/godot-gdscript-toolkit@master
+
+    - name: Check formatting
+      run: find . -name '*.gd' -and ! -path './addons/*' -exec gdformat --check '{}' ';'
