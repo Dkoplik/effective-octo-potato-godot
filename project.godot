@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 PosGetter="*res://assets/Global/Pos_Getter.gd"
+Buttons="*res://assets/Global/buttons.gd"
 
 [debug]
 

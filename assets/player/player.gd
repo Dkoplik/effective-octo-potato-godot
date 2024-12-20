@@ -13,9 +13,9 @@ var facing_direction: FacingDirection = FacingDirection.EAST  # Текущее �
 func _ready() -> void:
 	set_position_in_tiles(start_position)
 	set_facing_direction(start_facing_direction)
-	#Buttons.turn_left_pressed.connect(rotate_unit)
-	#Buttons.turn_right_pressed.connect(rotate_unit)
-	#Buttons.move_pressed.connect(move_forward)
+	Buttons.turn_left_pressed.connect(rotate_unit)
+	Buttons.turn_right_pressed.connect(rotate_unit)
+	Buttons.move_pressed.connect(move_forward)
 	
 
 # Установка ссылки на карту
@@ -33,7 +33,6 @@ func set_position_in_tiles(tile_coords: Vector2i) -> bool:
 		return false
 
 	if map.is_available(tile_coords):
-		#print(" map.is_available(tile_coords)")
 		#map.update_player_position(position_in_tiles, tile_coords)  # Обновляем карту
 		position_in_tiles = tile_coords
 		position = PosGetter.calculate_world_position(tile_coords)  # Обновляем мировую позицию
@@ -65,7 +64,7 @@ func rotate_unit(clockwise: bool):
 	rotate(PI / 3 * -offset )
 
 # Шаг вперёд. Возвращает true, если переместился
-func move_forward():
+func move_forward()-> bool:
 	var direction_offset = _get_direction_offset(facing_direction)
 	var target_tile = position_in_tiles + direction_offset
 	

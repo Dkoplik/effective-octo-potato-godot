@@ -15,10 +15,9 @@ offset_bottom = 220.0
 [node name="Player1" parent="." node_paths=PackedStringArray("map") instance=ExtResource("3_m6dsp")]
 position = Vector2(11, 11)
 map = NodePath("../Map")
-start_position = Vector2i(1, 0)
 
 [node name="Player2" parent="." node_paths=PackedStringArray("map") instance=ExtResource("3_m6dsp")]
 position = Vector2(440, 43)
 map = NodePath("../Map")
-start_position = Vector2i(6, 5)
+start_position = Vector2i(4, 5)
 start_facing_direction = 4
