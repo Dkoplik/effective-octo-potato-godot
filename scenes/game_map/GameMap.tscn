@@ -1,5 +1,6 @@
-[gd_scene load_steps=4 format=4 uid="uid://bfvpqpm03xh8k"]
+[gd_scene load_steps=5 format=4 uid="uid://bfvpqpm03xh8k"]
 
+[ext_resource type="Script" path="res://scenes/game_map/game-map.gd" id="1_5tjsq"]
 [ext_resource type="Texture2D" uid="uid://d15hk4s55rj" path="res://scenes/game_map/hexagon_tiles.png" id="2_gp1op"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vi8pr"]
@@ -77,6 +78,7 @@ custom_data_layer_1/type = 1
 sources/0 = SubResource("TileSetAtlasSource_vi8pr")
 
 [node name="Map" type="Node2D"]
+script = ExtResource("1_5tjsq")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 position = Vector2(50, 34)
