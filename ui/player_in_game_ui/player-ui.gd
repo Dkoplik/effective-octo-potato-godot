@@ -1,12 +1,12 @@
 extends Control
 
 func _on_turn_left_pressed() -> void:
-	Buttons.turn_left_pressed.emit(true)
+	Buttons.turn_left_pressed.emit(false)
 	pass
 
 
 func _on_turn_right_pressed() -> void:
-	Buttons.turn_left_pressed.emit(false)
+	Buttons.turn_left_pressed.emit(true)
 	pass
 
 

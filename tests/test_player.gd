@@ -57,3 +57,42 @@ func test_move_forward():
 	assert_false(player.move_forward())
 	assert_eq(player.get_position_in_tiles(), Vector2i(0, 0))
 	
+func test_move_forward_2():
+	var player = Player.instantiate()
+	player.set_map(map)
+	
+	# нечет - чет (SOUTH_EAST) строка
+	player.set_position_in_tiles(Vector2i(3, 3))
+	player.set_facing_direction(Face_Dir.SOUTH_EAST)
+	player.move_forward()
+	assert_eq(player.get_position_in_tiles(), Vector2i(4, 4))
+	player.set_facing_direction(Face_Dir.SOUTH_EAST)
+	player.move_forward()
+	assert_eq(player.get_position_in_tiles(), Vector2i(4, 5))
+	
+	# нечет - чет (SOUTH_WEST) строка
+	player.set_position_in_tiles(Vector2i(2, 4))
+	player.set_facing_direction(Face_Dir.SOUTH_WEST)
+	player.move_forward()
+	assert_eq(player.get_position_in_tiles(), Vector2i(1, 5))
+	player.set_facing_direction(Face_Dir.SOUTH_WEST)
+	player.move_forward()
+	assert_eq(player.get_position_in_tiles(), Vector2i(1, 6))
+	
+	# нечет - чет (NORTH_EAST) строка
+	player.set_position_in_tiles(Vector2i(3, 3))
+	player.set_facing_direction(Face_Dir.NORTH_EAST)
+	player.move_forward()
+	assert_eq(player.get_position_in_tiles(), Vector2i(4, 2))
+	player.set_facing_direction(Face_Dir.NORTH_EAST)
+	player.move_forward()
+	assert_eq(player.get_position_in_tiles(), Vector2i(4, 1))
+	
+	# нечет - чет (NORTH_WEST) строка
+	player.set_position_in_tiles(Vector2i(3, 3))
+	player.set_facing_direction(Face_Dir.NORTH_WEST)
+	player.move_forward()
+	assert_eq(player.get_position_in_tiles(), Vector2i(3, 2))
+	player.set_facing_direction(Face_Dir.NORTH_WEST)
+	player.move_forward()
+	assert_eq(player.get_position_in_tiles(), Vector2i(2, 1))
