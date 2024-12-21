@@ -10,7 +10,6 @@ var position_in_tiles: Vector2i  # Координаты тайла, в кото�
 var facing_direction: FacingDirection = FacingDirection.EAST  # Текущее направление юнита
 
 
-
 func _ready() -> void:
 	set_position_in_tiles(start_position)
 	set_facing_direction(start_facing_direction)
@@ -88,15 +87,15 @@ func _get_direction_offset(direction: FacingDirection) -> Vector2i:
 		FacingDirection.NORTH_EAST:
 			res = Vector2i(1, -1) if is_odd_row else Vector2i(0, -1)
 		FacingDirection.EAST:
-			res =  Vector2i(1, 0)
+			res = Vector2i(1, 0)
 		FacingDirection.SOUTH_EAST:
-			res =  Vector2i(1, 1) if is_odd_row else Vector2i(0, 1)
+			res = Vector2i(1, 1) if is_odd_row else Vector2i(0, 1)
 		FacingDirection.SOUTH_WEST:
-			res =  Vector2i(0, 1) if is_odd_row else Vector2i(-1, 1)
+			res = Vector2i(0, 1) if is_odd_row else Vector2i(-1, 1)
 		FacingDirection.WEST:
-			res =  Vector2i(-1, 0)
+			res = Vector2i(-1, 0)
 		FacingDirection.NORTH_WEST:
-			res =  Vector2i(0, -1) if is_odd_row else Vector2i(-1, -1)
+			res = Vector2i(0, -1) if is_odd_row else Vector2i(-1, -1)
 		_:
-			res =  Vector2i(0, 0)
+			res = Vector2i(0, 0)
 	return res
