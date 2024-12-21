@@ -14,4 +14,4 @@ func _on_move_pressed() -> void:
 
 
 func _on_shot_pressed() -> void:
-	pass  # Replace with function body.
+	Buttons.shoot_pressed.emit(false)

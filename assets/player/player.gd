@@ -6,6 +6,8 @@ enum FacingDirection { NORTH_EAST, EAST, SOUTH_EAST, SOUTH_WEST, WEST, NORTH_WES
 @export var map: Node = null  # Ссылка на объект карты
 @export var start_position: Vector2i = Vector2i(0, 0)
 @export var start_facing_direction: FacingDirection = FacingDirection.EAST
+@export var bullet_scene: PackedScene  # Сцена пули
+@export var health: int = 3
 var position_in_tiles: Vector2i  # Координаты тайла, в котором находится юнит
 var facing_direction: FacingDirection = FacingDirection.EAST  # Текущее направление юнита
 
@@ -16,6 +18,7 @@ func _ready() -> void:
 	Buttons.turn_left_pressed.connect(rotate_unit)
 	Buttons.turn_right_pressed.connect(rotate_unit)
 	Buttons.move_pressed.connect(move_forward)
+	Buttons.shoot_pressed.connect(shoot)
 
 
 func set_map(game_map: Node):
@@ -32,8 +35,8 @@ func set_position_in_tiles(tile_coords: Vector2i) -> bool:
 		push_error("Map is not set. Use set_map() to assign it.")
 		return false
 
-	if map.is_available(tile_coords):
-		#map.update_player_position(position_in_tiles, tile_coords)  # Обновляем карту
+	if map.is_available(tile_coords) and not map.is_position_occupied(tile_coords):
+		map.update_player_position(self, tile_coords)
 		position_in_tiles = tile_coords
 		position = PosGetter.calculate_world_position(tile_coords)
 		return true
@@ -72,18 +75,18 @@ func rotate_unit(clockwise: bool):
 
 # Шаг вперёд. Возвращает true, если переместился
 func move_forward() -> bool:
-	var direction_offset = _get_direction_offset(facing_direction)
+	var direction_offset = _get_direction_offset()
 	var target_tile = position_in_tiles + direction_offset
 
 	return set_position_in_tiles(target_tile)
 
 
 # возвращает смещение для каждого направления
-func _get_direction_offset(direction: FacingDirection) -> Vector2i:
+func _get_direction_offset() -> Vector2i:
 	# Определяем, нечётная ли строка, от чего зависит смещение
 	var is_odd_row = position_in_tiles.y % 2 != 0
 	var res = Vector2i(0, 0)
-	match direction:
+	match facing_direction:
 		FacingDirection.NORTH_EAST:
 			res = Vector2i(1, -1) if is_odd_row else Vector2i(0, -1)
 		FacingDirection.EAST:
@@ -99,3 +102,27 @@ func _get_direction_offset(direction: FacingDirection) -> Vector2i:
 		_:
 			res = Vector2i(0, 0)
 	return res
+
+
+func shoot(is_test: bool):
+	if not bullet_scene:
+		push_error("Bullet scene is not set.")
+		return null
+	var bullet = bullet_scene.instantiate()
+	get_tree().root.add_child(bullet)
+	bullet.setup(map, position_in_tiles, facing_direction)
+	if not is_test:
+		bullet.move()
+	return bullet
+
+
+func take_damage(amount: int) -> void:
+	health -= amount
+	if health <= 0:
+		die()
+
+
+func die() -> void:
+	print("Player has died!")
+	map.remove_player(self)
+	queue_free()
