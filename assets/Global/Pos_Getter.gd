@@ -10,6 +10,6 @@ func calculate_hex_position(pos: Vector2i):
 	if pos.y % 2 == 1:
 		pos_x += TILE_SIZE / 2
 	return Vector2(pos_x, pos_y)
-	
+
 func calculate_world_position(pos: Vector2i):
 	return calculate_hex_position(pos) + OFFSET_COORD
