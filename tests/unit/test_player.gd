@@ -2,7 +2,7 @@ extends GutTest
 
 const Player = preload("res://assets/player/Player.tscn")
 const Map = preload("res://scenes/game_map/GameMap.tscn")
-const FACE_DIRECTION = preload("res://assets/player/Player.gd").FacingDirection
+const FACE_DIRECTION = preload("res://assets/player/player.gd").FacingDirection
 var map = null
 
 
