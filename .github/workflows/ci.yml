@@ -10,6 +10,7 @@ on:
     paths:
       - '**.gd'
       - '!addons/**'
+  workflow_dispatch:
 
 jobs:
   lint:
@@ -37,3 +38,16 @@ jobs:
 
     - name: Check formatting
       run: find . -name '*.gd' -and ! -path './addons/*' | xargs gdformat --check
+      
+  tests:
+    name: 'Run Unit Tests'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        
+      - name: Docker test
+        uses: ceceppa/godot-gut-ci@main
+        with:
+          godot_version: 4.3
+          gut_params: -gdir=res://tests/unit -gsuffix=test_ -gprefix=.gd
