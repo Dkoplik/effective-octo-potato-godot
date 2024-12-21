@@ -52,4 +52,4 @@ jobs:
         run: godot --headless --import
         
       - name: Run GUT
-        run: godot -d -s --path "$PWD" addons/gut/gut_cmdln.gd -gdir=res://tests/unit -gpreffix=test_ -gsuffix=.gd -gexit
+        run: godot --headless -s --path "$PWD" addons/gut/gut_cmdln.gd -gdir=res://tests/unit -gpreffix=test_ -gsuffix=.gd -gexit
