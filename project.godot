@@ -17,8 +17,8 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-PosGetter="*res://assets/Global/Pos_Getter.gd"
-Buttons="*res://assets/Global/buttons.gd"
+PosGetter="*res://common/global_scripts/pos-getter.gd"
+Buttons="*res://common/global_scripts/buttons.gd"
 
 [debug]
 
