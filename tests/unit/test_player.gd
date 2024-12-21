@@ -56,8 +56,9 @@ func test_move_forward():
 	assert_eq(player.get_position_in_tiles(), Vector2i(7, 3))
 	player.set_facing_direction(FACE_DIRECTION.WEST)
 	player.move_forward()
+	player.move_forward()
 	player.move_forward()  # Движение в препятствие
-	assert_eq(player.get_position_in_tiles(), Vector2i(6, 3))
+	assert_eq(player.get_position_in_tiles(), Vector2i(5, 3))
 
 
 func test_move_forward_into_wall():
