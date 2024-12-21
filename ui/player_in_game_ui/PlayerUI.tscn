@@ -1,5 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://m2a1hi3252yf"]
+[gd_scene load_steps=9 format=3 uid="uid://m2a1hi3252yf"]
 
+[ext_resource type="Script" path="res://ui/player_in_game_ui/player-ui.gd" id="1_7alhx"]
 [ext_resource type="FontFile" uid="uid://urieviud6nqf" path="res://common/fonts/Monocraft.otf" id="1_jilrc"]
 [ext_resource type="Texture2D" uid="uid://cqca72ev5gqnp" path="res://ui/player_in_game_ui/sprites/heart.png" id="2_rtxld"]
 [ext_resource type="Texture2D" uid="uid://cw3b6lu8tlgaq" path="res://ui/player_in_game_ui/sprites/turn_left.png" id="3_cmxas"]
@@ -17,6 +18,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_7alhx")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -149,3 +151,8 @@ layout_mode = 2
 icon = ExtResource("6_ly7sx")
 flat = true
 expand_icon = true
+
+[connection signal="pressed" from="CanvasLayer/PanelContainer_Buttons/GridContainer/Turn_left" to="." method="_on_turn_left_pressed"]
+[connection signal="pressed" from="CanvasLayer/PanelContainer_Buttons/GridContainer/Turn_right" to="." method="_on_turn_right_pressed"]
+[connection signal="pressed" from="CanvasLayer/PanelContainer_Buttons/GridContainer/Move" to="." method="_on_move_pressed"]
+[connection signal="pressed" from="CanvasLayer/PanelContainer_Buttons/GridContainer/Shot" to="." method="_on_shot_pressed"]
