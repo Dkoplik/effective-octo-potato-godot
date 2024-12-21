@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://b41cd3faspl2j"]
+
+[ext_resource type="Texture2D" uid="uid://c5hog37kh4lep" path="res://assets/player/bullet/Bullet.png" id="1_4gnoe"]
+[ext_resource type="Script" path="res://assets/player/bullet/bullet.gd" id="1_oim8v"]
+
+[node name="Bullet" type="Node2D"]
+script = ExtResource("1_oim8v")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_4gnoe")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
+[node name="Destroy_timer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="Destroy_timer" to="." method="_on_destroy_timer_timeout"]
