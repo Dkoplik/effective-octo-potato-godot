@@ -12,23 +12,26 @@ func before_each():
 
 func test_action_points_spent_correctly():
 	assert_eq(step_manager.get_action_points(), 5)
-	var success = step_manager.spend_action_points(ACTION_TYPE.MOVE)
+	var success = step_manager.has_enough_ap(ACTION_TYPE.MOVE)
 	assert_true(success)
+	step_manager.spend_action_points(ACTION_TYPE.MOVE)
 	assert_eq(step_manager.get_action_points(), 3)
 
-	success = step_manager.spend_action_points(ACTION_TYPE.ROTATE)
+	success = step_manager.has_enough_ap(ACTION_TYPE.ROTATE)
 	assert_true(success)
+	step_manager.spend_action_points(ACTION_TYPE.ROTATE)
 	assert_eq(step_manager.get_action_points(), 2)
 
 	step_manager.reset_action_points()
-	success = step_manager.spend_action_points(ACTION_TYPE.SHOOT)
+	success = step_manager.has_enough_ap(ACTION_TYPE.SHOOT)
 	assert_true(success)
+	step_manager.spend_action_points(ACTION_TYPE.SHOOT)
 	assert_eq(step_manager.get_action_points(), 2)
 
 
 func test_spend_action_points_failure():
 	step_manager.spend_action_points(ACTION_TYPE.SHOOT)
-	var success = step_manager.spend_action_points(ACTION_TYPE.SHOOT)
+	var success = step_manager.has_enough_ap(ACTION_TYPE.SHOOT)
 	assert_false(success)
 	assert_eq(step_manager.get_action_points(), 2)
 

@@ -17,9 +17,15 @@ func reset_action_points():
 func get_action_points() -> int:
 	return current_action_points
 
-# Списание очков действий
-func spend_action_points(action: ActionType) -> bool:
-	return false
+func has_enough_ap(action: ActionType)-> bool:
+	return current_action_points >= action
+
+
+func spend_action_points(action: ActionType):
+	current_action_points -= action
+	if current_action_points == 0:
+		end_turn()
+
 
 func end_turn():
 	emit_signal("turn_ended")
