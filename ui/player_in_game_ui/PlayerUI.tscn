@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://m2a1hi3252yf"]
+[gd_scene load_steps=10 format=3 uid="uid://m2a1hi3252yf"]
 
 [ext_resource type="Script" path="res://ui/player_in_game_ui/player-ui.gd" id="1_7alhx"]
 [ext_resource type="FontFile" uid="uid://urieviud6nqf" path="res://common/fonts/Monocraft.otf" id="1_jilrc"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://b6nwalxybgk06" path="res://ui/player_in_game_ui/sprites/turn_right.png" id="4_gj4ng"]
 [ext_resource type="Texture2D" uid="uid://drnrr8roeiw75" path="res://ui/player_in_game_ui/sprites/move.png" id="5_i77fm"]
 [ext_resource type="Texture2D" uid="uid://s25m2er036qg" path="res://ui/player_in_game_ui/sprites/shot.png" id="6_ly7sx"]
+[ext_resource type="PackedScene" uid="uid://b41cd3faspl2j" path="res://assets/player/bullet/Bullet.tscn" id="8_aknti"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_at8w7"]
 
@@ -151,6 +152,8 @@ layout_mode = 2
 icon = ExtResource("6_ly7sx")
 flat = true
 expand_icon = true
+
+[node name="Bullet" parent="CanvasLayer/PanelContainer_Buttons/GridContainer/Shot" instance=ExtResource("8_aknti")]
 
 [connection signal="pressed" from="CanvasLayer/PanelContainer_Buttons/GridContainer/Turn_left" to="." method="_on_turn_left_pressed"]
 [connection signal="pressed" from="CanvasLayer/PanelContainer_Buttons/GridContainer/Turn_right" to="." method="_on_turn_right_pressed"]

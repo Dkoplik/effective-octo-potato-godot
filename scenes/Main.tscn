@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://5stxddd0ehfr"]
+[gd_scene load_steps=5 format=3 uid="uid://5stxddd0ehfr"]
 
 [ext_resource type="PackedScene" uid="uid://bfvpqpm03xh8k" path="res://scenes/game_map/GameMap.tscn" id="1_0a1kl"]
 [ext_resource type="PackedScene" uid="uid://m2a1hi3252yf" path="res://ui/player_in_game_ui/PlayerUI.tscn" id="2_4s4go"]
 [ext_resource type="PackedScene" uid="uid://dvjacq7xtrrgy" path="res://assets/player/Player.tscn" id="3_m6dsp"]
+[ext_resource type="PackedScene" uid="uid://c8d00y0sxg165" path="res://assets/game_controller/GameController.tscn" id="4_c8cbc"]
 
 [node name="Main" type="Node2D"]
 
@@ -21,3 +22,5 @@ position = Vector2(440, 43)
 map = NodePath("../Map")
 start_position = Vector2i(4, 5)
 start_facing_direction = 4
+
+[node name="GameController" parent="." instance=ExtResource("4_c8cbc")]

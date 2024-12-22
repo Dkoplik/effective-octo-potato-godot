@@ -7,6 +7,7 @@ enum FacingDirection { NORTH_EAST, EAST, SOUTH_EAST, SOUTH_WEST, WEST, NORTH_WES
 @export var start_position: Vector2i = Vector2i(0, 0)
 @export var start_facing_direction: FacingDirection = FacingDirection.EAST
 @export var bullet_scene: PackedScene  # Сцена пули
+@export var step_manager: Node  # Ссылка на StepManager
 @export var health: int = 3
 var position_in_tiles: Vector2i  # Координаты тайла, в котором находится юнит
 var facing_direction: FacingDirection = FacingDirection.EAST  # Текущее направление юнита
