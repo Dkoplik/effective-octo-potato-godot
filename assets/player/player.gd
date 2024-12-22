@@ -123,6 +123,7 @@ func shoot(is_test: bool):
 
 func take_damage(amount: int) -> void:
 	health -= amount
+	Labels.health_changed.emit(id, health)
 	if health <= 0:
 		die()
 

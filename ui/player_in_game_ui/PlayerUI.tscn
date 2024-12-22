@@ -58,7 +58,7 @@ texture = ExtResource("2_rtxld")
 expand_mode = 2
 stretch_mode = 5
 
-[node name="Label" type="Label" parent="CanvasLayer/Lives1/MarginContainer/VBoxContainer"]
+[node name="Steps1" type="Label" parent="CanvasLayer/Lives1/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_jilrc")
 text = "steps: 5"
@@ -89,7 +89,7 @@ layout_mode = 2
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Lives2/MarginContainer/VBoxContainer/CenterContainer"]
 layout_mode = 2
 
-[node name="Count_HP1" type="Label" parent="CanvasLayer/Lives2/MarginContainer/VBoxContainer/CenterContainer/HBoxContainer"]
+[node name="Count_HP2" type="Label" parent="CanvasLayer/Lives2/MarginContainer/VBoxContainer/CenterContainer/HBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_jilrc")
 theme_override_font_sizes/font_size = 30
@@ -102,7 +102,7 @@ texture = ExtResource("2_rtxld")
 expand_mode = 2
 stretch_mode = 5
 
-[node name="Label" type="Label" parent="CanvasLayer/Lives2/MarginContainer/VBoxContainer"]
+[node name="Steps2" type="Label" parent="CanvasLayer/Lives2/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_jilrc")
 text = "steps: 5"

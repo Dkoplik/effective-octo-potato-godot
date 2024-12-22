@@ -2,6 +2,8 @@ extends Node
 
 const FACING_DIRECTION = preload("res://assets/player/player.gd").FacingDirection
 
+signal ap_changed(player_id, ap_ammount)
+
 @export var step_manager_scene: PackedScene
 @export var action_manager_scene: PackedScene
 @export var player_scene: PackedScene
@@ -73,6 +75,7 @@ func get_current_player_index():
 
 func _start_turn_for_current_player():
 	_step_manager.reset_action_points()
+	Labels.ap_changed.emit(current_player_index, _step_manager.get_action_points())
 	print("Player ", current_player_index + 1, "'s turn")
 
 
