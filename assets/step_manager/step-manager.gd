@@ -27,6 +27,7 @@ func has_enough_ap(action: ActionType) -> bool:
 
 func spend_action_points(action: ActionType):
 	current_action_points -= action
+	Labels.change_ap.emit()
 	if current_action_points == 0:
 		end_turn()
 

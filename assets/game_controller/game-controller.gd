@@ -1,8 +1,8 @@
 extends Node
 
-const FACING_DIRECTION = preload("res://assets/player/player.gd").FacingDirection
-
 signal ap_changed(player_id, ap_ammount)
+
+const FACING_DIRECTION = preload("res://assets/player/player.gd").FacingDirection
 
 @export var step_manager_scene: PackedScene
 @export var action_manager_scene: PackedScene
@@ -18,7 +18,7 @@ var _action_manager: Node = null
 
 
 func _ready() -> void:
-	print("gc ready")
+	Labels.change_ap.connect(_update_label_ap)
 	_initialize_step_manager()
 	_initialize_players()
 	_initialize_action_manager()
@@ -75,10 +75,13 @@ func get_current_player_index():
 
 func _start_turn_for_current_player():
 	_step_manager.reset_action_points()
-	Labels.ap_changed.emit(current_player_index, _step_manager.get_action_points())
-	print("Player ", current_player_index + 1, "'s turn")
 
 
 func _on_turn_ended():
 	current_player_index = (current_player_index + 1) % 2
 	_start_turn_for_current_player()
+	Labels.ap_changed.emit(current_player_index, _step_manager.get_action_points())
+
+
+func _update_label_ap():
+	Labels.ap_changed.emit(current_player_index, _step_manager.get_action_points())
