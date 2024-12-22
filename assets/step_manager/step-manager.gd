@@ -3,21 +3,25 @@ extends Node
 signal turn_ended
 
 # Перечисление типов действий и их стоимости
-enum ActionType { ROTATE = 1, MOVE, SHOOT }
+enum ActionType { ROTATE = 1, MOVE = 2, SHOOT = 3 }
 
 var max_action_points: int = 5
 var current_action_points: int
 
+
 func initialize():
 	reset_action_points()
+
 
 func reset_action_points():
 	current_action_points = max_action_points
 
+
 func get_action_points() -> int:
 	return current_action_points
 
-func has_enough_ap(action: ActionType)-> bool:
+
+func has_enough_ap(action: ActionType) -> bool:
 	return current_action_points >= action
 
 
