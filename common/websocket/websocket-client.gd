@@ -9,19 +9,8 @@ signal text_message_recieved(from_id: int, text: String)
 enum MessageType { TEXT_MESSAGE }
 
 var uid: int = -1  # uid должен быть положительным, поэтому через -1 обозначаем то, что его ещё нет
-var connection_status := MultiplayerPeer.ConnectionStatus.CONNECTION_DISCONNECTED
-var _ws_peer := WebSocketMultiplayerPeer.new()
-
-
-func _ready() -> void:
-	#region Подключение multiplayer сигналов к данному клиенту
-	multiplayer.connected_to_server.connect(_on_connected_to_server)
-	multiplayer.connection_failed.connect(_on_connection_failed)
-	multiplayer.peer_connected.connect(_on_peer_connected)
-	multiplayer.peer_disconnected.connect(_on_peer_disconnected)
-	multiplayer.server_disconnected.connect(_on_server_disconnected)
-	#endregion
-	multiplayer.set_multiplayer_peer(null)  # изначально нет никакого соединения
+var connection_status := WebSocketPeer.STATE_CLOSED
+var _ws_peer := WebSocketPeer.new()
 
 
 func _process(_delta: float) -> void:
@@ -32,24 +21,22 @@ func _process(_delta: float) -> void:
 # соединение теперь отвечает за RPC вызовы для этого узла и всех дочерних. Так же сохраняет
 # свой уникальный id.
 func connect_to_server(url: String) -> void:
-	#region Проверка входных параметров
-	if multiplayer.has_multiplayer_peer():
-		push_error("Соединение уже организовано, необходимо прервать старое соединение")
+	if connection_status != WebSocketPeer.STATE_CLOSED:
+		push_error("Прошлое соединение не закрыто")
 		return
-	#endregion
 
-	var error: int = _ws_peer.create_client(url)
+	var error: int = _ws_peer.connect_to_url(url)
 	if error:
 		push_error("Ошибка с кодом ", error, " при подключении к url: ", url)
 		return
 
-	multiplayer.set_multiplayer_peer(_ws_peer)
+	connection_status = WebSocketPeer.STATE_CONNECTING
 	print("Идёт соединение по ссылке ", url, " ...")
 
 
 # Отключает клиента от WebSocket сервера.
 func disconnect_from_server() -> void:
-	_ws_peer.close()
+	_ws_peer.close(1000)
 
 
 # Отправляет строковое сообщение в JSON формате с указанием типа сообщения.
@@ -61,8 +48,8 @@ func send_string_message(message: String) -> void:
 	#endregion
 
 	var packet: Dictionary = {"message_type": MessageType.TEXT_MESSAGE, "text": message}
-	var buffer: PackedByteArray = JSON.stringify(packet).to_utf8_buffer()
-	var error: int = _ws_peer.put_packet(buffer)
+	var buffer: String = JSON.stringify(packet)
+	var error: int = _ws_peer.send_text(buffer)
 	if error:
 		push_error("Ошибка с кодом ", error, " при попытке отправить сообщение: ", message)
 		return
@@ -70,10 +57,12 @@ func send_string_message(message: String) -> void:
 
 
 func get_str_connection_status() -> String:
-	if connection_status == WebSocketMultiplayerPeer.ConnectionStatus.CONNECTION_CONNECTED:
+	if connection_status == WebSocketPeer.STATE_OPEN:
 		return "CONNECTED"
-	elif connection_status == WebSocketMultiplayerPeer.ConnectionStatus.CONNECTION_CONNECTING:
+	elif connection_status == WebSocketPeer.STATE_CONNECTING:
 		return "CONNECTING"
+	elif connection_status == WebSocketPeer.STATE_CLOSING:
+		return "CLOSING"
 	else:
 		return "DISCONNECTED"
 
@@ -81,13 +70,16 @@ func get_str_connection_status() -> String:
 # Возвращает true, если находиться в соединении. Для закрытого состояния или
 # процесса подключения возвращает false.
 func is_ws_connected() -> bool:
-	return connection_status == WebSocketMultiplayerPeer.ConnectionStatus.CONNECTION_CONNECTED
+	return connection_status == WebSocketPeer.STATE_OPEN
 
 
 # Обрабатывает / поддерживает WebSocket соединение с сервером.
 func _web_socket_poll() -> void:
+	if connection_status == WebSocketPeer.STATE_CLOSED:
+		return
+
 	_ws_peer.poll()
-	connection_status = _ws_peer.get_connection_status()
+	connection_status = _ws_peer.get_ready_state()
 
 	while is_ws_connected() and _ws_peer.get_available_packet_count() > 0:
 		_process_incomming_messages()
@@ -95,30 +87,33 @@ func _web_socket_poll() -> void:
 
 func _process_incomming_messages() -> void:
 	print("Клиент с uid ", uid, " репортинг: обнаружены входящие пакеты")
-	var sender_id: int = _ws_peer.get_packet_peer()
 	var buffer: PackedByteArray = _ws_peer.get_packet()
 	var error: int = _ws_peer.get_packet_error()
 	if error:
-		push_error("Ошибка ", error, " во время получения сообщения клиентом ", uid, " от ", sender_id)
+		push_error("Ошибка ", error, " во время получения сообщения клиентом ", uid)
 		return
-	print("Клиент с uid ", uid, " репортинг: успешное получение пакета от клиента ", sender_id)
+	print("Клиент с uid ", uid, " репортинг: успешное получение пакета от клиента")
 
 	var json: Dictionary = JSON.parse_string(buffer.get_string_from_utf8())
 	if json == null:
 		push_error("Не удалось пропарсить JSON")
 		return
-	print("Клиент с uid ", uid, " репортинг: успешный парсинг JSON'а от клиента ", sender_id)
-	general_message_recieved.emit(sender_id, json)
-	_process_json_type(sender_id, json)
+	print("Клиент с uid ", uid, " репортинг: успешный парсинг JSON'а от клиента")
+	general_message_recieved.emit(-999, json)
+	_process_json_type(-999, json)
 
 
 # Обрабатывает входящий JSON и испускает более конкретные сигналы, в зависимости
 # от типа сообщения в JSON.
 func _process_json_type(from_id: int, json: Dictionary) -> void:
-	var message_type: MessageType = json.get("message_type")
-	if message_type == null:
-		push_error("Получен JSON от ", from_id, " без указания типа сообщения")
+	if json == null:
+		push_error("Получен пустой JSON")
 		return
+
+	print(json)
+	if (json.get("message_type") == null):
+		return
+	var message_type: MessageType = json.get("message_type")
 
 	match message_type:
 		MessageType.TEXT_MESSAGE:
@@ -126,34 +121,3 @@ func _process_json_type(from_id: int, json: Dictionary) -> void:
 			if text == null:
 				push_error("Не удалось получить текстовое сообщение от ", from_id, ", хотя JSON получен")
 			text_message_recieved.emit(from_id, text)
-
-
-# Обработка успешного подключения к серверу
-func _on_connected_to_server() -> void:
-	uid = multiplayer.get_unique_id()
-	print("Клиент с uid ", uid, " репортинг: успешное подключение к серверу")
-
-
-# Обработка провального подключения к серверу
-func _on_connection_failed() -> void:
-	print("Клиент с uid ", uid, " репортинг: не удалось подключиться к серверу")
-	print("Последний пакет: ", _ws_peer.get_packet(), " ; последняя ошибка: ", _ws_peer.get_packet_error())
-	multiplayer.set_multiplayer_peer(null)
-	uid = -1
-
-
-# Обработка подключения какого-то клиента (в том числе сервера)
-func _on_peer_connected(id: int) -> void:
-	print("Клиент с uid ", uid, " репортинг: появилось подключение с id ", id)
-
-
-# Обработка отключения какого-то клиента от сервера
-func _on_peer_disconnected(id: int) -> void:
-	print("Клиент с uid ", uid, " репортинг: id ", id, "отключился")
-
-
-# Обработка отсоединения от сервера
-func _on_server_disconnected() -> void:
-	print("Клиент с uid ", uid, " репортинг: разорвано соединение с сервером")
-	multiplayer.set_multiplayer_peer(null)
-	uid = -1
