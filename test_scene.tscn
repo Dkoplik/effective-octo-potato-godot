@@ -1,35 +1,32 @@
-[gd_scene load_steps=2 format=3 uid="uid://ck056ksdg52iu"]
+[gd_scene load_steps=3 format=3 uid="uid://jtjq6qo5tjhg"]
 
-[ext_resource type="Script" path="res://host.gd" id="3_6xfv6"]
+[ext_resource type="Script" path="res://common/websocket/websocket-client.gd" id="2_fln2y"]
+[ext_resource type="Script" path="res://test-webocket.gd" id="3_6xfv6"]
 
 [node name="TestScene" type="Node2D"]
+script = ExtResource("3_6xfv6")
 
-[node name="Type" type="Label" parent="."]
-offset_left = 183.0
-offset_top = 16.0
-offset_right = 285.0
-offset_bottom = 39.0
+[node name="WebSocketClient" type="Node" parent="."]
+script = ExtResource("2_fln2y")
 
 [node name="Label_ID" type="Label" parent="."]
-offset_left = 183.0
-offset_top = 45.0
-offset_right = 285.0
-offset_bottom = 68.0
+offset_left = 6.0
+offset_top = 8.0
+offset_right = 28.0
+offset_bottom = 31.0
 text = "ID:"
 
 [node name="Id Field" type="Label" parent="."]
-offset_left = 213.0
-offset_top = 46.0
-offset_right = 315.0
-offset_bottom = 69.0
+offset_left = 31.0
+offset_top = 10.0
+offset_right = 133.0
+offset_bottom = 33.0
 
-[node name="Create Host" type="Button" parent="."]
-offset_left = 21.0
-offset_top = 14.0
-offset_right = 29.0
-offset_bottom = 22.0
-text = "Create Host"
-script = ExtResource("3_6xfv6")
+[node name="Status" type="Label" parent="."]
+offset_left = 355.0
+offset_top = 11.0
+offset_right = 457.0
+offset_bottom = 34.0
 
 [node name="Connect" type="Button" parent="."]
 offset_left = 24.0
@@ -60,19 +57,19 @@ offset_bottom = 267.0
 placeholder_text = "Place Some Text"
 
 [node name="Incomming Text" type="Label" parent="."]
-offset_left = 111.0
-offset_top = 176.0
-offset_right = 240.0
-offset_bottom = 199.0
+offset_left = 16.0
+offset_top = 169.0
+offset_right = 145.0
+offset_bottom = 192.0
 text = "Incomming Text:"
 
 [node name="Income Text Field" type="Label" parent="."]
-offset_left = 247.0
-offset_top = 178.0
-offset_right = 349.0
-offset_bottom = 201.0
+offset_left = 151.0
+offset_top = 171.0
+offset_right = 253.0
+offset_bottom = 194.0
 
-[connection signal="pressed" from="Create Host" to="Create Host" method="_on_pressed"]
-[connection signal="pressed" from="Connect" to="Create Host" method="_on_connect_pressed"]
-[connection signal="pressed" from="Disconnect" to="Create Host" method="_on_disconnect_pressed"]
-[connection signal="pressed" from="Send" to="Create Host" method="_on_send_pressed"]
+[connection signal="general_message_recieved" from="WebSocketClient" to="." method="_on_web_socket_client_general_message_recieved"]
+[connection signal="pressed" from="Connect" to="." method="_on_connect_pressed"]
+[connection signal="pressed" from="Disconnect" to="." method="_on_disconnect_pressed"]
+[connection signal="pressed" from="Send" to="." method="_on_send_pressed"]
