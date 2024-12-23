@@ -131,4 +131,5 @@ func take_damage(amount: int) -> void:
 func die() -> void:
 	print("Player has died!")
 	map.remove_player(self)
+	Labels.death.emit(id)
 	queue_free()
