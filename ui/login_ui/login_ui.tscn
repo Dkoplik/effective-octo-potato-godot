@@ -1,0 +1,63 @@
+[gd_scene load_steps=2 format=3 uid="uid://xf08x56kxw1g"]
+
+[ext_resource type="Script" path="res://ui/login_ui/login-ui.gd" id="1_1g76u"]
+
+[node name="LogInUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_1g76u")
+
+[node name="LoginVContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -91.0
+offset_right = 91.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="UsernameVContainer" type="VBoxContainer" parent="LoginVContainer"]
+layout_mode = 2
+
+[node name="UsernameLabel" type="Label" parent="LoginVContainer/UsernameVContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "Имя пользователя:"
+
+[node name="UsernameField" type="LineEdit" parent="LoginVContainer/UsernameVContainer"]
+layout_mode = 2
+caret_blink = true
+
+[node name="PasswordVContainer" type="VBoxContainer" parent="LoginVContainer"]
+layout_mode = 2
+
+[node name="PasswordLabel" type="Label" parent="LoginVContainer/PasswordVContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "Пароль:"
+
+[node name="PasswordField" type="LineEdit" parent="LoginVContainer/PasswordVContainer"]
+layout_mode = 2
+caret_blink = true
+secret = true
+secret_character = "*"
+
+[node name="LoginErrors" type="Label" parent="LoginVContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 10
+
+[node name="LogInButton" type="Button" parent="LoginVContainer"]
+layout_mode = 2
+text = "Войти"
+
+[connection signal="text_changed" from="LoginVContainer/UsernameVContainer/UsernameField" to="." method="_on_username_field_text_changed"]
+[connection signal="text_changed" from="LoginVContainer/PasswordVContainer/PasswordField" to="." method="_on_password_field_text_changed"]
+[connection signal="pressed" from="LoginVContainer/LogInButton" to="." method="_on_log_in_button_pressed"]

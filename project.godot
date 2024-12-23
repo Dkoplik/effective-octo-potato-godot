@@ -49,6 +49,10 @@ enabled=PackedStringArray("res://addons/gdLinter/plugin.cfg", "res://addons/gdsc
 import/fbx2gltf/enabled=false
 import/blender/enabled=false
 
+[gui]
+
+theme/custom_font="res://common/fonts/Monocraft.otf"
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"
