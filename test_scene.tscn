@@ -1,0 +1,78 @@
+[gd_scene load_steps=2 format=3 uid="uid://ck056ksdg52iu"]
+
+[ext_resource type="Script" path="res://host.gd" id="3_6xfv6"]
+
+[node name="TestScene" type="Node2D"]
+
+[node name="Type" type="Label" parent="."]
+offset_left = 183.0
+offset_top = 16.0
+offset_right = 285.0
+offset_bottom = 39.0
+
+[node name="Label_ID" type="Label" parent="."]
+offset_left = 183.0
+offset_top = 45.0
+offset_right = 285.0
+offset_bottom = 68.0
+text = "ID:"
+
+[node name="Id Field" type="Label" parent="."]
+offset_left = 213.0
+offset_top = 46.0
+offset_right = 315.0
+offset_bottom = 69.0
+
+[node name="Create Host" type="Button" parent="."]
+offset_left = 21.0
+offset_top = 14.0
+offset_right = 29.0
+offset_bottom = 22.0
+text = "Create Host"
+script = ExtResource("3_6xfv6")
+
+[node name="Connect" type="Button" parent="."]
+offset_left = 24.0
+offset_top = 65.0
+offset_right = 32.0
+offset_bottom = 73.0
+text = "Connect to Server"
+
+[node name="Disconnect" type="Button" parent="."]
+offset_left = 24.0
+offset_top = 107.0
+offset_right = 170.0
+offset_bottom = 138.0
+text = "Disconnect"
+
+[node name="Send" type="Button" parent="."]
+offset_left = 29.0
+offset_top = 226.0
+offset_right = 89.0
+offset_bottom = 257.0
+text = "Send"
+
+[node name="TextEdit" type="TextEdit" parent="."]
+offset_left = 92.0
+offset_top = 218.0
+offset_right = 278.0
+offset_bottom = 267.0
+placeholder_text = "Place Some Text"
+
+[node name="Incomming Text" type="Label" parent="."]
+offset_left = 111.0
+offset_top = 176.0
+offset_right = 240.0
+offset_bottom = 199.0
+text = "Incomming Text:"
+
+[node name="Income Text Field" type="Label" parent="."]
+offset_left = 247.0
+offset_top = 178.0
+offset_right = 349.0
+offset_bottom = 201.0
+
+[connection signal="pressed" from="Create Host" to="Create Host" method="_on_pressed"]
+[connection signal="pressed" from="Connect" to="Create Host" method="_on_connect_pressed"]
+[connection signal="pressed" from="Disconnect" to="Create Host" method="_on_disconnect_pressed"]
+[connection signal="pressed" from="Send" to="Create Host" method="_on_send_pressed"]
