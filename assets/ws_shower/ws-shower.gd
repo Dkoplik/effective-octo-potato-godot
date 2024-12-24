@@ -6,7 +6,7 @@ func _ready() -> void:
 
 
 func show(player_id: int) -> void:
-	print("shower show")
+	Buttons.game_ended.emit()
 	var victory_ui = preload("res://ui/win/WinScreen.tscn").instantiate()
 	victory_ui.set_winner(player_id)
 	get_tree().root.add_child(victory_ui)
