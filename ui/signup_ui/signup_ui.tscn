@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://dmtt80qswd4lq"]
+[gd_scene load_steps=3 format=3 uid="uid://dmtt80qswd4lq"]
 
 [ext_resource type="Script" path="res://ui/signup_ui/signup-ui.gd" id="1_3lwks"]
+[ext_resource type="Script" path="res://ui/error-label.gd" id="2_3e0c0"]
 
 [node name="SignUpUI" type="Control"]
 layout_mode = 3
@@ -50,6 +51,7 @@ layout_mode = 2
 theme_override_colors/font_color = Color(1, 0, 0, 1)
 theme_override_font_sizes/font_size = 10
 autowrap_mode = 1
+script = ExtResource("2_3e0c0")
 
 [node name="UsernameVContainer" type="VBoxContainer" parent="SignUpVContainer/SignUpFieldsHContainer/EmailAndUsernameVContainer"]
 layout_mode = 2
@@ -69,6 +71,7 @@ layout_mode = 2
 theme_override_colors/font_color = Color(1, 0, 0, 1)
 theme_override_font_sizes/font_size = 10
 autowrap_mode = 1
+script = ExtResource("2_3e0c0")
 
 [node name="SpaceLabel" type="Label" parent="SignUpVContainer/SignUpFieldsHContainer"]
 layout_mode = 2
@@ -104,6 +107,7 @@ layout_mode = 2
 theme_override_colors/font_color = Color(1, 0, 0, 1)
 theme_override_font_sizes/font_size = 10
 autowrap_mode = 1
+script = ExtResource("2_3e0c0")
 
 [node name="PasswordRepeatVContainer" type="VBoxContainer" parent="SignUpVContainer/SignUpFieldsHContainer/PasswordsVContainer"]
 layout_mode = 2
@@ -125,6 +129,7 @@ layout_mode = 2
 theme_override_colors/font_color = Color(1, 0, 0, 1)
 theme_override_font_sizes/font_size = 10
 autowrap_mode = 1
+script = ExtResource("2_3e0c0")
 
 [node name="SignUpButton" type="Button" parent="SignUpVContainer"]
 layout_mode = 2
@@ -134,6 +139,8 @@ text = "Регистрация"
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0, 0, 1)
 theme_override_font_sizes/font_size = 10
+horizontal_alignment = 1
+script = ExtResource("2_3e0c0")
 
 [connection signal="text_changed" from="SignUpVContainer/SignUpFieldsHContainer/EmailAndUsernameVContainer/EmailVContainer/EmailField" to="." method="_on_email_field_text_changed"]
 [connection signal="text_changed" from="SignUpVContainer/SignUpFieldsHContainer/EmailAndUsernameVContainer/UsernameVContainer/UsernameField" to="." method="_on_username_field_text_changed"]

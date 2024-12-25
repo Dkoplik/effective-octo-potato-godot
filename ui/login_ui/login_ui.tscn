@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://xf08x56kxw1g"]
+[gd_scene load_steps=3 format=3 uid="uid://xf08x56kxw1g"]
 
 [ext_resource type="Script" path="res://ui/login_ui/login-ui.gd" id="1_1g76u"]
+[ext_resource type="Script" path="res://ui/error-label.gd" id="2_ms1qq"]
 
 [node name="LogInUI" type="Control"]
 layout_mode = 3
@@ -53,6 +54,7 @@ secret_character = "*"
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0, 0, 1)
 theme_override_font_sizes/font_size = 10
+script = ExtResource("2_ms1qq")
 
 [node name="LogInButton" type="Button" parent="LoginVContainer"]
 layout_mode = 2

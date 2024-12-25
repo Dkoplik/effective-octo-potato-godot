@@ -4,12 +4,13 @@ extends Control
 var is_user_authorized := false
 var user_name := "":
 	set = _set_user_name
+
 @onready var user_name_label: Label = $CornerVContainer/UserLabelHContainer/UserName
 @onready var authorized_buttons: Container = $CornerVContainer/LogOutHContainer
 @onready var unauthorized_buttons: Container = $CornerVContainer/LogSignInHContainer
 
 
-# Лучше этому UI не выходить за пределы своей зоны ответтственности и делегировать её через сигналы
+# Лучше этому UI не выходить за пределы своей зоны ответственности и делегировать её через сигналы
 func _on_play_button_pressed() -> void:
 	assert(false, "Move to server browser with ability to join or create lobby")  # TODO
 
