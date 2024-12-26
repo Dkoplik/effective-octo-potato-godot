@@ -1,6 +1,11 @@
 class_name MainMenuUI
 extends Control
 
+signal switch_to_play_request
+signal switch_to_log_in_request
+signal switch_to_sign_in_request
+signal log_out_request
+
 var is_user_authorized := false
 var user_name := "":
 	set = _set_user_name
@@ -12,19 +17,23 @@ var user_name := "":
 
 # Лучше этому UI не выходить за пределы своей зоны ответственности и делегировать её через сигналы
 func _on_play_button_pressed() -> void:
-	assert(false, "Move to server browser with ability to join or create lobby")  # TODO
+	print_rich("[color=green]Main Menu UI:[/color] нажата кнопка play")
+	switch_to_play_request.emit()
 
 
-func _on_login_button_pressed() -> void:
-	assert(false, "Move to login fields")  # TODO
+func _on_log_in_button_pressed() -> void:
+	print_rich("[color=green]Main Menu UI:[/color] нажата кнопка авторизации")
+	switch_to_log_in_request.emit()
 
 
 func _on_sign_in_button_pressed() -> void:
-	assert(false, "Move to registration fields")  # TODO
+	print_rich("[color=green]Main Menu UI:[/color] нажата кнопка регистрации")
+	switch_to_sign_in_request.emit()
 
 
 func _on_log_out_button_pressed() -> void:
-	assert(false, "send log out http request and update current username")  # TODO
+	print_rich("[color=green]Main Menu UI:[/color] нажата кнопка log out")
+	log_out_request.emit()
 
 
 func _set_user_name(val: String) -> void:

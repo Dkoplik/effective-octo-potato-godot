@@ -56,7 +56,7 @@ vertical_alignment = 1
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="LoginButton" type="Button" parent="CornerVContainer/LogSignInHContainer"]
+[node name="LogInButton" type="Button" parent="CornerVContainer/LogSignInHContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 12
 text = "Войти"
@@ -79,6 +79,6 @@ theme_override_font_sizes/font_size = 12
 text = "Разлогиниться"
 
 [connection signal="pressed" from="CentralMenuVContainer/PlayButton" to="." method="_on_play_button_pressed"]
-[connection signal="pressed" from="CornerVContainer/LogSignInHContainer/LoginButton" to="." method="_on_login_button_pressed"]
+[connection signal="pressed" from="CornerVContainer/LogSignInHContainer/LogInButton" to="." method="_on_log_in_button_pressed"]
 [connection signal="pressed" from="CornerVContainer/LogSignInHContainer/SignInButton" to="." method="_on_sign_in_button_pressed"]
 [connection signal="pressed" from="CornerVContainer/LogOutHContainer/LogOutButton" to="." method="_on_log_out_button_pressed"]

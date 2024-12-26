@@ -2,6 +2,7 @@ class_name LogInUI
 extends Control
 
 signal login_request(username: String, password: String)
+signal go_back
 
 var username: String = ""
 var password: String = ""
@@ -34,3 +35,8 @@ func _on_log_in_button_pressed() -> void:
 	print_rich("[color=green]Log In UI:[/color] отправка сигнала на авторизацию")
 	login_errors_label.hide_error()
 	login_request.emit(username, password)
+
+
+func _on_return_button_pressed() -> void:
+	print_rich("[color=green]Log In UI:[/color] нажата кнопка 'назад'")
+	go_back.emit()

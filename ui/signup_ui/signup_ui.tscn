@@ -12,6 +12,16 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_3lwks")
 
+[node name="ReturnButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -62.0
+offset_bottom = 25.0
+grow_horizontal = 0
+text = "Назад"
+
 [node name="SignUpVContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 13
@@ -142,6 +152,7 @@ theme_override_font_sizes/font_size = 10
 horizontal_alignment = 1
 script = ExtResource("2_3e0c0")
 
+[connection signal="pressed" from="ReturnButton" to="." method="_on_return_button_pressed"]
 [connection signal="text_changed" from="SignUpVContainer/SignUpFieldsHContainer/EmailAndUsernameVContainer/EmailVContainer/EmailField" to="." method="_on_email_field_text_changed"]
 [connection signal="text_changed" from="SignUpVContainer/SignUpFieldsHContainer/EmailAndUsernameVContainer/UsernameVContainer/UsernameField" to="." method="_on_username_field_text_changed"]
 [connection signal="text_changed" from="SignUpVContainer/SignUpFieldsHContainer/PasswordsVContainer/PasswordVContainer/PasswordField" to="." method="_on_password_field_text_changed"]

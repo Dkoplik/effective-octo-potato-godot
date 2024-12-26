@@ -2,6 +2,7 @@ class_name SignUpUI
 extends Control
 
 signal signup_request(email: String, username: String, password: String)
+signal go_back
 
 var email: String = ""
 var username: String = ""
@@ -74,3 +75,8 @@ func _check_password_repeate() -> void:
 		password_repeat_errors_label.hide_error()
 	else:
 		password_repeat_errors_label.show_error("Пароль не совпадает")
+
+
+func _on_return_button_pressed() -> void:
+	print_rich("[color=green]Sign Up UI:[/color] нажата конпка 'назад'")
+	go_back.emit()

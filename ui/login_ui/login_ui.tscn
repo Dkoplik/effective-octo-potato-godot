@@ -12,6 +12,16 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_1g76u")
 
+[node name="ReturnButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -62.0
+offset_bottom = 25.0
+grow_horizontal = 0
+text = "Назад"
+
 [node name="LoginVContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 13
@@ -60,6 +70,7 @@ script = ExtResource("2_ms1qq")
 layout_mode = 2
 text = "Войти"
 
+[connection signal="pressed" from="ReturnButton" to="." method="_on_return_button_pressed"]
 [connection signal="text_changed" from="LoginVContainer/UsernameVContainer/UsernameField" to="." method="_on_username_field_text_changed"]
 [connection signal="text_changed" from="LoginVContainer/PasswordVContainer/PasswordField" to="." method="_on_password_field_text_changed"]
 [connection signal="pressed" from="LoginVContainer/LogInButton" to="." method="_on_log_in_button_pressed"]

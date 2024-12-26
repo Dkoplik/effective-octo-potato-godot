@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://dcn3fv2bffto3"]
+
+[ext_resource type="Script" path="res://scenes/main_menu/main-menu.gd" id="1_hrw4j"]
+[ext_resource type="PackedScene" uid="uid://46lp2c7errqa" path="res://ui/main_menu_ui/main_menu_ui.tscn" id="2_epvrq"]
+[ext_resource type="PackedScene" uid="uid://xf08x56kxw1g" path="res://ui/login_ui/login_ui.tscn" id="3_5qang"]
+[ext_resource type="PackedScene" uid="uid://dmtt80qswd4lq" path="res://ui/signup_ui/signup_ui.tscn" id="4_qbia4"]
+[ext_resource type="Script" path="res://scenes/main_menu/authorization-http.gd" id="5_pdsku"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_hrw4j")
+
+[node name="MainMenuUI" parent="." instance=ExtResource("2_epvrq")]
+layout_mode = 1
+
+[node name="LogInUI" parent="." instance=ExtResource("3_5qang")]
+visible = false
+layout_mode = 1
+
+[node name="SignUpUI" parent="." instance=ExtResource("4_qbia4")]
+visible = false
+layout_mode = 1
+
+[node name="AuthorizationHTTP" type="HTTPRequest" parent="."]
+script = ExtResource("5_pdsku")
+
+[connection signal="switch_to_log_in_request" from="MainMenuUI" to="." method="_on_main_menu_ui_switch_to_log_in_request"]
+[connection signal="switch_to_play_request" from="MainMenuUI" to="." method="_on_main_menu_ui_switch_to_play_request"]
+[connection signal="switch_to_sign_in_request" from="MainMenuUI" to="." method="_on_main_menu_ui_switch_to_sign_in_request"]
+[connection signal="go_back" from="LogInUI" to="." method="_on_go_back"]
+[connection signal="login_request" from="LogInUI" to="." method="_on_log_in_ui_login_request"]
+[connection signal="go_back" from="SignUpUI" to="." method="_on_go_back"]
+[connection signal="signup_request" from="SignUpUI" to="." method="_on_sign_up_ui_signup_request"]
