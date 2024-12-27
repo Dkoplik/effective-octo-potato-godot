@@ -2,7 +2,7 @@ extends Control
 
 
 func set_winner(player_id: int) -> void:
-	player_id = player_id + 1
+	player_id = (player_id + 1) % 2 + 1
 	$PanelContainer/VBoxContainer/WinnetText.text = "Игрок " + str(player_id) + " победил"
 
 
