@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="WebGame"
-run/main_scene="res://scenes/Main.tscn"
+run/main_scene="res://scenes/main_menu/main_menu.tscn"
 config/features=PackedStringArray("4.3")
 config/icon="res://icon.svg"
 
@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 PosGetter="*res://common/global_scripts/pos-getter.gd"
 Buttons="*res://common/global_scripts/buttons.gd"
+CurrentUser="*res://common/global_scripts/current-user.gd"
 Labels="*res://common/global_scripts/labels.gd"
 
 [debug]
@@ -49,6 +50,10 @@ enabled=PackedStringArray("res://addons/gdLinter/plugin.cfg", "res://addons/gdsc
 
 import/fbx2gltf/enabled=false
 import/blender/enabled=false
+
+[gui]
+
+theme/custom_font="res://common/fonts/Monocraft.otf"
 
 [rendering]
 

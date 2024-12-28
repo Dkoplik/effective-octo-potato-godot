@@ -1,0 +1,84 @@
+[gd_scene load_steps=2 format=3 uid="uid://46lp2c7errqa"]
+
+[ext_resource type="Script" path="res://ui/main_menu_ui/main-menu-ui.gd" id="1_q0l54"]
+
+[node name="MainMenuUI" type="Control"]
+z_index = 4000
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_q0l54")
+
+[node name="CentralMenuVContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -52.0
+offset_right = 52.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+alignment = 1
+
+[node name="PlayButton" type="Button" parent="CentralMenuVContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Играть"
+
+[node name="CornerVContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+alignment = 1
+
+[node name="UserLabelHContainer" type="HBoxContainer" parent="CornerVContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="UserName" type="Label" parent="CornerVContainer/UserLabelHContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Неизвестный пользователь"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="LogSignInHContainer" type="HBoxContainer" parent="CornerVContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="LogInButton" type="Button" parent="CornerVContainer/LogSignInHContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Войти"
+
+[node name="SignInButton" type="Button" parent="CornerVContainer/LogSignInHContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Регистрация"
+
+[node name="LogOutHContainer" type="HBoxContainer" parent="CornerVContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="LogOutButton" type="Button" parent="CornerVContainer/LogOutHContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 12
+text = "Разлогиниться"
+
+[connection signal="pressed" from="CentralMenuVContainer/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="CornerVContainer/LogSignInHContainer/LogInButton" to="." method="_on_log_in_button_pressed"]
+[connection signal="pressed" from="CornerVContainer/LogSignInHContainer/SignInButton" to="." method="_on_sign_in_button_pressed"]
+[connection signal="pressed" from="CornerVContainer/LogOutHContainer/LogOutButton" to="." method="_on_log_out_button_pressed"]
