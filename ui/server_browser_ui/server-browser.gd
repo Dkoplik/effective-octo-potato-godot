@@ -5,7 +5,9 @@ signal connect_to_lobby
 signal go_back
 
 # gdlint: disable=max-line-length
-var server_entry_scene: PackedScene = preload("res://ui/server_browser_ui/server_entry/server_entry.tscn")
+var server_entry_scene: PackedScene = preload(
+	"res://ui/server_browser_ui/server_entry/server_entry.tscn"
+)
 
 @onready var server_list: Control = $VBoxContainer/ScrollContainer/ServerList
 @onready var browser_http: BrowserHTTP = $BrowserHTTP

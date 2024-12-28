@@ -39,13 +39,20 @@ func sign_up_http_request(username: String, email: String, password: String) -> 
 # ошибки, либо отсутствие ошибки + какое-то другое сообщение от сервера.
 func _simplified_http_request(http_resource: HTTPRequestResource) -> HumanHTTPResult:
 	var res: HTTPResult = await self.send_request(http_resource)
-	print_rich("[color=orange]AuthorizationHTTP:[/color] заголовок полученного запроса: ", res.headers)
+	print_rich(
+		"[color=orange]AuthorizationHTTP:[/color] заголовок полученного запроса: ", res.headers
+	)
 
 	var human_res := HumanHTTPResult.new()
 	if not res.is_success():
 		human_res.is_error = true
 		# gdlint: disable=max-line-length
-		human_res.message = "Error code: " + str(res.get_error()) + "; http result code: " + str(res.get_result_code())
+		human_res.message = (
+			"Error code: "
+			+ str(res.get_error())
+			+ "; http result code: "
+			+ str(res.get_result_code())
+		)
 		return human_res
 
 	if res.headers.get("content-type") != "application/json; charset=utf-8":
@@ -55,7 +62,10 @@ func _simplified_http_request(http_resource: HTTPRequestResource) -> HumanHTTPRe
 		return human_res
 
 	# gdlint: disable=max-line-length
-	print_rich("[color=orange]AuthorizationHTTP:[/color] тело полученного запроса в строковом виде: ", res.body_as_string())
+	print_rich(
+		"[color=orange]AuthorizationHTTP:[/color] тело полученного запроса в строковом виде: ",
+		res.body_as_string()
+	)
 	var res_body: Dictionary = res.body_as_json()
 	if res.is_response_error():
 		human_res.is_error = true

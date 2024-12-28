@@ -15,7 +15,12 @@ func send_request(http_resource: HTTPRequestResource) -> HTTPResult:
 	#endregion
 
 	# gdlint: disable=max-line-length
-	print_rich("[color=orange]AwaitableHTTP:[/color] отправка http запроса по [color=purple]url: ", url, "[/color] с методом ", method)
+	print_rich(
+		"[color=orange]AwaitableHTTP:[/color] отправка http запроса по [color=purple]url: ",
+		url,
+		"[/color] с методом ",
+		method
+	)
 	print_rich("[color=orange]AwaitableHTTP:[/color] тело http запроса: ", request_data)
 
 	if _is_requesting:

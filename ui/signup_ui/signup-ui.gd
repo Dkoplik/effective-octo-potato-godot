@@ -10,10 +10,14 @@ var password: String = ""
 var password_repeat: String = ""
 
 # gdlint: disable=max-line-length
-@onready var email_errors_label: ErrorLabel = $SignUpVContainer/SignUpFieldsHContainer/EmailAndUsernameVContainer/EmailVContainer/EmailErrors
-@onready var username_errors_label: ErrorLabel = $SignUpVContainer/SignUpFieldsHContainer/EmailAndUsernameVContainer/UsernameVContainer/UsernameErrors
-@onready var password_errors_label: ErrorLabel = $SignUpVContainer/SignUpFieldsHContainer/PasswordsVContainer/PasswordVContainer/PasswordErrors
-@onready var password_repeat_errors_label: ErrorLabel = $SignUpVContainer/SignUpFieldsHContainer/PasswordsVContainer/PasswordRepeatVContainer/PasswordRepeatErrors
+@onready
+var email_errors_label: ErrorLabel = $SignUpVContainer/SignUpFieldsHContainer/EmailAndUsernameVContainer/EmailVContainer/EmailErrors
+@onready
+var username_errors_label: ErrorLabel = $SignUpVContainer/SignUpFieldsHContainer/EmailAndUsernameVContainer/UsernameVContainer/UsernameErrors
+@onready
+var password_errors_label: ErrorLabel = $SignUpVContainer/SignUpFieldsHContainer/PasswordsVContainer/PasswordVContainer/PasswordErrors
+@onready
+var password_repeat_errors_label: ErrorLabel = $SignUpVContainer/SignUpFieldsHContainer/PasswordsVContainer/PasswordRepeatVContainer/PasswordRepeatErrors
 @onready var signup_errors_label: ErrorLabel = $SignUpVContainer/SignUpErrors
 # gdlint: enable=max-line-length
 

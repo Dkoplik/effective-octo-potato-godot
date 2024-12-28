@@ -40,7 +40,12 @@ func _simplified_http_request(http_resource: HTTPRequestResource) -> HumanHTTPRe
 	if not res.is_success():
 		human_res.is_error = true
 		# gdlint: disable=max-line-length
-		human_res.message = "Error code: " + str(res.get_error()) + "; http result code: " + str(res.get_result_code())
+		human_res.message = (
+			"Error code: "
+			+ str(res.get_error())
+			+ "; http result code: "
+			+ str(res.get_result_code())
+		)
 		return human_res
 
 	if res.headers.get("content-type") != "application/json; charset=utf-8":
@@ -50,7 +55,10 @@ func _simplified_http_request(http_resource: HTTPRequestResource) -> HumanHTTPRe
 		return human_res
 
 	# gdlint: disable=max-line-length
-	print_rich("[color=orange]BrowserHTTP:[/color] тело полученного запроса в строковом виде: ", res.body_as_string())
+	print_rich(
+		"[color=orange]BrowserHTTP:[/color] тело полученного запроса в строковом виде: ",
+		res.body_as_string()
+	)
 	var res_body: Dictionary = res.body_as_json()
 	if res.is_response_error():
 		human_res.is_error = true
