@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://4jbrgyl44vh5"]
+
+[ext_resource type="Script" path="res://assets/step_manager/step-manager.gd" id="1_87qe7"]
+
+[node name="StepManager" type="Node"]
+script = ExtResource("1_87qe7")
