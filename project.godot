@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 PosGetter="*res://common/global_scripts/pos-getter.gd"
 Buttons="*res://common/global_scripts/buttons.gd"
 CurrentUser="*res://common/global_scripts/current-user.gd"
+Labels="*res://common/global_scripts/labels.gd"
 
 [debug]
 

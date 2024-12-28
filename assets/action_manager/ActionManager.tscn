@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dt1sooi7y85oo"]
+
+[ext_resource type="Script" path="res://assets/action_manager/action-manager.gd" id="1_lgmpp"]
+
+[node name="ActionManager" type="Node"]
+script = ExtResource("1_lgmpp")
