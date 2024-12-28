@@ -62,4 +62,4 @@ static func get_password_error(password: String) -> String:
 	if upper_case_letters.search_all(password).size() == 0:
 		return "Пароль должен содержать хотя бы одну заглавную букву"
 
-	return "" # Всё норм
+	return ""  # Всё норм

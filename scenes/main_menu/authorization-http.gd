@@ -1,7 +1,6 @@
 class_name AuthorizationHTTP
 extends AwaitableHTTP
 
-
 @export var log_in_url := "http://localhost:3000/login"
 @export var sign_up_url := "http://localhost:3000/users"
 
