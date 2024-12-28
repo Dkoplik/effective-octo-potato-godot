@@ -1,0 +1,39 @@
+[gd_scene load_steps=2 format=3 uid="uid://dpo6827h8dqu1"]
+
+[ext_resource type="Script" path="res://ui/server_browser_ui/server_entry/server-entry.gd" id="1_ibbfq"]
+
+[node name="ServerEntry" type="Control"]
+custom_minimum_size = Vector2(300, 32)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+script = ExtResource("1_ibbfq")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HostUsernameLabel" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 2
+text = "username"
+
+[node name="PlayerAmountLabel" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+text = "1/2"
+
+[node name="ConnectButton" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 4
+text = "Присоединиться"

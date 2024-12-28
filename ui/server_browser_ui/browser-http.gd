@@ -1,37 +1,31 @@
-class_name AuthorizationHTTP
+class_name BrowserHTTP
 extends AwaitableHTTP
 
-
-@export var log_in_url := "http://localhost:3000/login"
-@export var sign_up_url := "http://localhost:3000/users"
+@export var server_list_url := "http://localhost:3000/lobbies"
+@export var connect_to_server_url := ""
 
 
 func login_http_request(username: String, password: String) -> HumanHTTPResult:
-	var dict := {"username": username, "password": password}
-	var json_str: String = JSON.stringify(dict)
+	var dict := {"username": username, "password": password}  #TODO
+	var json_str: String = JSON.stringify(dict)  # TODO
 
 	var http_resource := HTTPRequestResource.new()
-	http_resource.url = log_in_url
+	http_resource.url = connect_to_server_url
 	http_resource.custom_headers = ["Content-Type: application/json"]
 	http_resource.method = HTTPClient.METHOD_POST
 	http_resource.request_data = json_str
 
-	print_rich("[color=orange]AuthorizationHTTP:[/color] отправка запроса на авторизацию")
+	print_rich("[color=orange]BrowserHTTP:[/color] отправка запроса на подключение к серверу")
 	var human_res: HumanHTTPResult = await _simplified_http_request(http_resource)
 	return human_res
 
 
-func sign_up_http_request(username: String, email: String, password: String) -> HumanHTTPResult:
-	var dict := {"username": username, "email": email, "password": password}
-	var json_str: String = JSON.stringify(dict)
-
+func get_server_list_request() -> HumanHTTPResult:
 	var http_resource := HTTPRequestResource.new()
-	http_resource.url = sign_up_url
-	http_resource.custom_headers = ["Content-Type: application/json"]
-	http_resource.method = HTTPClient.METHOD_POST
-	http_resource.request_data = json_str
+	http_resource.url = server_list_url
+	http_resource.method = HTTPClient.METHOD_GET
 
-	print_rich("[color=orange]AuthorizationHTTP:[/color] отправка запроса на регистрацию")
+	print_rich("[color=orange]BrowserHTTP:[/color] отправка запроса на список серверов")
 	var human_res: HumanHTTPResult = await _simplified_http_request(http_resource)
 	return human_res
 
@@ -40,7 +34,7 @@ func sign_up_http_request(username: String, email: String, password: String) -> 
 # ошибки, либо отсутствие ошибки + какое-то другое сообщение от сервера.
 func _simplified_http_request(http_resource: HTTPRequestResource) -> HumanHTTPResult:
 	var res: HTTPResult = await self.send_request(http_resource)
-	print_rich("[color=orange]AuthorizationHTTP:[/color] заголовок полученного запроса: ", res.headers)
+	print_rich("[color=orange]BrowserHTTP:[/color] заголовок полученного запроса: ", res.headers)
 
 	var human_res := HumanHTTPResult.new()
 	if not res.is_success():
@@ -56,7 +50,7 @@ func _simplified_http_request(http_resource: HTTPRequestResource) -> HumanHTTPRe
 		return human_res
 
 	# gdlint: disable=max-line-length
-	print_rich("[color=orange]AuthorizationHTTP:[/color] тело полученного запроса в строковом виде: ", res.body_as_string())
+	print_rich("[color=orange]BrowserHTTP:[/color] тело полученного запроса в строковом виде: ", res.body_as_string())
 	var res_body: Dictionary = res.body_as_json()
 	if res.is_response_error():
 		human_res.is_error = true
@@ -70,5 +64,7 @@ func _simplified_http_request(http_resource: HTTPRequestResource) -> HumanHTTPRe
 		human_res.message = str_error
 		return human_res
 
-	human_res.message = res.body_as_string()
+	if res_body.has("message"):
+		human_res.message = res_body.get("message")
+
 	return human_res

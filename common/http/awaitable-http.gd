@@ -1,17 +1,6 @@
 class_name AwaitableHTTP
 extends HTTPRequest
 
-
-# "Структура" под отправку запроса
-class HTTPRequestResource:
-	extends Resource
-
-	var url := ""
-	var custom_headers := PackedStringArray()
-	var method := HTTPClient.METHOD_GET
-	var request_data := ""
-
-
 signal request_finished
 
 var _is_requesting := false
