@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dfsnsv50ox0s6"]
+
+[ext_resource type="Script" path="res://assets/ws_shower/ws-shower.gd" id="1_psttr"]
+
+[node name="WsShower" type="Node"]
+script = ExtResource("1_psttr")

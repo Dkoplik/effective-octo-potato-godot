@@ -6,8 +6,9 @@ enum FacingDirection { NORTH_EAST, EAST, SOUTH_EAST, SOUTH_WEST, WEST, NORTH_WES
 @export var map: Node = null  # Ссылка на объект карты
 @export var start_position: Vector2i = Vector2i(0, 0)
 @export var start_facing_direction: FacingDirection = FacingDirection.EAST
-@export var bullet_scene: PackedScene  # Сцена пули
+@export var bullet_scene: PackedScene
 @export var health: int = 3
+@export var id: int = -1
 var position_in_tiles: Vector2i  # Координаты тайла, в котором находится юнит
 var facing_direction: FacingDirection = FacingDirection.EAST  # Текущее направление юнита
 
@@ -15,14 +16,18 @@ var facing_direction: FacingDirection = FacingDirection.EAST  # Текущее �
 func _ready() -> void:
 	set_position_in_tiles(start_position)
 	set_facing_direction(start_facing_direction)
-	Buttons.turn_left_pressed.connect(rotate_unit)
-	Buttons.turn_right_pressed.connect(rotate_unit)
-	Buttons.move_pressed.connect(move_forward)
-	Buttons.shoot_pressed.connect(shoot)
 
 
 func set_map(game_map: Node):
 	map = game_map
+
+
+func set_id(player_id: int):
+	id = player_id
+
+
+func set_sprite(sprite: CompressedTexture2D):
+	$Sprite2D.texture = sprite
 
 
 func get_position_in_tiles() -> Vector2i:
@@ -49,6 +54,7 @@ func get_facing_direction() -> FacingDirection:
 
 func set_facing_direction(new_direction: FacingDirection):
 	facing_direction = new_direction
+	rotation = 0
 	match facing_direction:
 		FacingDirection.NORTH_EAST:
 			rotate(-PI / 3)
@@ -77,7 +83,6 @@ func rotate_unit(clockwise: bool):
 func move_forward() -> bool:
 	var direction_offset = _get_direction_offset()
 	var target_tile = position_in_tiles + direction_offset
-
 	return set_position_in_tiles(target_tile)
 
 
@@ -118,6 +123,7 @@ func shoot(is_test: bool):
 
 func take_damage(amount: int) -> void:
 	health -= amount
+	Labels.health_changed.emit(id, health)
 	if health <= 0:
 		die()
 
@@ -125,4 +131,5 @@ func take_damage(amount: int) -> void:
 func die() -> void:
 	print("Player has died!")
 	map.remove_player(self)
+	Labels.death.emit(id)
 	queue_free()

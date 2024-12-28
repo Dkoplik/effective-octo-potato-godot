@@ -1,0 +1,16 @@
+[gd_scene load_steps=7 format=3 uid="uid://c8d00y0sxg165"]
+
+[ext_resource type="Script" path="res://assets/game_controller/game-controller.gd" id="1_gko05"]
+[ext_resource type="PackedScene" uid="uid://4jbrgyl44vh5" path="res://assets/step_manager/StepManager.tscn" id="2_3bwyg"]
+[ext_resource type="PackedScene" uid="uid://dt1sooi7y85oo" path="res://assets/action_manager/ActionManager.tscn" id="3_0pflk"]
+[ext_resource type="PackedScene" uid="uid://dvjacq7xtrrgy" path="res://assets/player/Player.tscn" id="3_8h8go"]
+[ext_resource type="Texture2D" uid="uid://cgiw0fbkyjmhy" path="res://assets/player/sprites/player_9mmhandgun.png" id="4_vswxt"]
+[ext_resource type="Texture2D" uid="uid://dlc4lmsko8liq" path="res://assets/player/sprites/player_flamethrower.png" id="5_661yd"]
+
+[node name="GameController" type="Node"]
+script = ExtResource("1_gko05")
+step_manager_scene = ExtResource("2_3bwyg")
+action_manager_scene = ExtResource("3_0pflk")
+player_scene = ExtResource("3_8h8go")
+player1_sprite = ExtResource("4_vswxt")
+player2_sprite = ExtResource("5_661yd")
